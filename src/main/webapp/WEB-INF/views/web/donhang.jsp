@@ -6,12 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Admin</title>
+<title>TP-Shop</title>
 </head>
 <body>
 	<div class="page-container ">
 		<!--/content-inner-->
-		<div class="left-content">
+		<div class="main-content">
 			<div class="row">
 				<h3 style="text-align: center">Đơn hàng</h3>
 
@@ -47,8 +47,19 @@
 								<tr>
 									<td class="mahoadon" data-id=${value.getMahoadon() }>
 										<div class="checkbox">
-											<label><input class="checkboxhoadon" type="checkbox"
-												value="${value.getMahoadon()}"></label>
+											<c:choose>
+											<c:when test="${value.getTinhtrang() !='INP'}">
+												<label><input class="checkboxhoadon" type="checkbox" disabled
+															  value="${value.getMahoadon()}"></label>>
+
+											</c:when>
+											<c:otherwise>
+												<label><input class="checkboxhoadon" type="checkbox"
+															  value="${value.getMahoadon()}"></label>
+											</c:otherwise>
+											</c:choose>
+
+
 										</div>
 									</td>
 									<td class="tenkhachhang">${value.getTenkhachhang()}</td>
@@ -56,27 +67,27 @@
 									<td class="diachigiaohang">${value.getDiachigiaohang()}</td>
 									<td class="hinhthucgiaohang">${value.getHinhthucgiaohang() }</td>
 									<td class="tinhtrang"><c:choose>
-										<c:when test="${value.getTinhtrang()=='FIN'}">
-											<div class="order_succsess" value="FIN">Đã nhận</div>
+											<c:when test="${value.getTinhtrang()=='FIN'}">
+												<div class="order_succsess" value="1">Đã nhận</div>
 
-										</c:when>
+											</c:when>
 										<c:when test="${value.getTinhtrang()=='DEL'}">
-											<div class="order_delivering" value="DEL">Đang giao hàng</div>
+											<div class="order_succsess" value="1">Đang giao hàng</div>
 
 										</c:when>
-										<c:otherwise>
-											<div class="order_delivering" value="INP">Đang xử lý</div>
-										</c:otherwise>
+											<c:otherwise>
+												<div class="order_delivering" value="0">Đang xử lý</div>
+											</c:otherwise>
 
 
-									</c:choose></td>
+										</c:choose></td>
 									<td class="thanhtoan"><c:choose>
 											<c:when test="${value.getThanhtoan()}">
 												<div class="order_succsess" value="1">Hoàn thành</div>
 
 											</c:when>
 											<c:otherwise>
-												<div class="order_checkout" value="0">Chưa thanh
+												<div class="order_delivering" value="0">Chưa thanh
 													toán</div>
 											</c:otherwise>
 
@@ -106,6 +117,6 @@
 		</div>
 	</div>
 	<script src='<c:url value="/resources/JS/jquery-3.4.1.min.js" />'></script>
-	<script src='<c:url value="/resources/JS/admin/donhang.js" />'></script>
+	<script src='<c:url value="/resources/JS/web/donhang.js" />'></script>
 </body>
 </html>

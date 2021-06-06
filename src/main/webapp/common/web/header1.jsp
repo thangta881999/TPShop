@@ -97,7 +97,7 @@
 								<li><a class="nav-link"
 									   href="<c:url value="/user/${SecurityUtils.getPrincipal().getUserId()}"/>">Thông tin</a></li>
 								<li><a class="nav-link"
-									   href="<c:url value='/dangnhap/thoat'/>">Đơn hàng</a></li>
+									   href="<c:url value="/user/bill?userId=${SecurityUtils.getPrincipal().getUserId()}"/>">Đơn hàng</a></li>
 								<li><a class="nav-link"
 									href="<c:url value='/dangnhap/thoat'/>">Thoát</a></li>
 							</ul></li>

@@ -4,6 +4,7 @@ import com.TP.DTO.HoaDonDTO;
 import com.TP.IService.IHoaDon;
 import com.TP.converter.HoaDonConverter;
 import com.TP.entity.HoaDon;
+import com.TP.entity.UserEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +76,27 @@ public class HoaDonDAO implements IHoaDon {
 		List<HoaDonDTO> models = new ArrayList<HoaDonDTO>();
 		List<HoaDon> listHoaDon = new ArrayList<HoaDon>();
 		String query = "from HOADON";
+		if (offset < 0) {
+			listHoaDon = session.createQuery(query).getResultList();
+		} else {
+			listHoaDon = session.createQuery(query).setFirstResult(offset).setMaxResults(limit).getResultList();
+		}
+
+		for (HoaDon item : listHoaDon) {
+			HoaDonDTO hdDTO = converter.toDTO(item);
+			models.add(hdDTO);
+		}
+
+		return models;
+	}
+
+	@Override
+	public List<HoaDonDTO> findAllByUserId(int userId, int offset, int limit) {
+		Session session = sessionFactory.getCurrentSession();
+		UserEntity userEntity=session.get(UserEntity.class,userId);
+		List<HoaDonDTO> models = new ArrayList<HoaDonDTO>();
+		List<HoaDon> listHoaDon = new ArrayList<HoaDon>();
+		String query = "FROM HOADON " + "WHERE tenkhachhang='" + userEntity.getFullName() + "'";
 		if (offset < 0) {
 			listHoaDon = session.createQuery(query).getResultList();
 		} else {

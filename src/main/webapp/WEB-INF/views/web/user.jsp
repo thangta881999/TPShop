@@ -20,13 +20,17 @@
             </header>
 
             <div class="clearfix"></div>
-            <div class="row" id="listproducts" name="listproducts">
+            <div class="row" id="user-data" name="user-data">
                 <div
                         class=" col-md-3">
                 </div>
                 <div
                         class=" col-md-6 col-sm-6 simpleCart_shelfItem text-center ">
                     <form id="form-user">
+                        <input type="text"
+                               id="id" name="id"
+                               class="form-control hidden"
+                               value="${user.id}">
                         <label for="fullName">Full Name</label> <br> <input type="text" readonly="true"
                                                                             id="fullName" name="fullName"
                                                                             class="form-control"
@@ -37,11 +41,17 @@
                                                                             class="form-control"
                                                                             value="${user.userName}"
                     ><br>
+                        <div class="password ">
                         <label for="password">Password </label><br> <input type="password" readonly="true"
                                                                            id="password" name="password"
                                                                            class="form-control"
                                                                            value="${user.password}"
                     ><br>
+                        </div>
+                        <div>
+                        <button id="btn-changePassword" class="btn btn-action hidden ">Change Password
+                        </button>
+                        </div>
                         <div class="password1 hidden">
                             <label for="password1">New Password</label> <br> <input type="password1"
                                                                                     id="password1" name="password1"

@@ -1,5 +1,6 @@
 package com.TP.entity;
 
+import com.TP.DTO.TinhTrangEnum;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -22,7 +23,8 @@ public class HoaDon extends BaseEntity{
 	String sodt;
 	@NotEmpty(message = "Nhập đầy đủ địa chỉ giao hàng")
 	String diachigiaohang;
-	Boolean tinhtrang;
+	@Enumerated(EnumType.STRING)
+	TinhTrangEnum tinhtrang;
 	Boolean thanhtoan;
 	public Boolean getThanhtoan() {
 		return thanhtoan;
@@ -79,15 +81,13 @@ public class HoaDon extends BaseEntity{
 		this.diachigiaohang = diachigiaohang;
 	}
 
-	public Boolean getTinhtrang() {
+	public TinhTrangEnum getTinhtrang() {
 		return tinhtrang;
 	}
 
-	public void setTinhtrang(Boolean tinhtrang) {
+	public void setTinhtrang(TinhTrangEnum tinhtrang) {
 		this.tinhtrang = tinhtrang;
 	}
-
-
 
 	public Set<ChiTietHoaDon> getDanhsachChiTietHoaDon() {
 		return danhsachChiTietHoaDon;

@@ -21,24 +21,35 @@ $(document).ready(function(){
 		$("#userName").attr("readOnly",false);
 		$("#fullName").attr("readOnly",false);
 		$("#phone").attr("readOnly",false);
-		$("#password").attr("readOnly",false);
-		var passwordTemp = $("#password").val();
-		$("#password").val("Nhập lại mật khẩu");
 		$("#btn-ok").removeClass("hidden");
 		$("#btn-thoat").removeClass("hidden");
 		$("#btn-capnhat").addClass("hidden");
+		$("#btn-changePassword").removeClass("hidden");
+	});
+	$("#btn-changePassword").click(function() {
+		event.preventDefault();
+		$(".password").addClass("hidden");
 		$(".password1").removeClass("hidden");
 		$(".password2").removeClass("hidden");
+		$("#btn-changePassword").addClass( "hidden");
 	});
+
+
 	$("#btn-thoat").click(function() {
 		location.reload();
 	});
 	$("#btn-ok").click(function() {
-		if ($("#password1").val()===$("#password2").val()) {
+		if ($("#password1").val()===$("#password2").val() && $("#password1").val() != "" && $("#password1").val().length >6
+		|| ( $("#password1").val()===$("#password2").val() && $("#password2").val()==="" && $("#password1").hasClass("hidden")) ) {
 			var formData = $("#form-user").serializeArray();
-			console.log(formData);
 			var json={};
-			json["userName"]=formData
+			$.each(formData, function (i, field) {
+				json[field.name] = field.value;
+			});
+			if(json.password1.length > 6)
+			{
+				json["password"]=json.password1;
+			}
 			$.ajax({
 				url: "/api/user",
 				type: "POST",
@@ -46,12 +57,18 @@ $(document).ready(function(){
 
 				data: JSON.stringify(json),
 				success: function (res) {
+					swal("Success!", "", "success");
 					location.reload();
+
 				},
 				error: function() {
 					swal("Error!", "Plese complete & check again input form", "error");
 				}
 			});
+		}
+		else
+		{
+			swal("Error!", "Plese complete & check again input form", "error");
 		}
 	});
 

@@ -9,6 +9,7 @@ import java.util.Map;
 
 public interface IHoaDon {
 	List<HoaDonDTO> findAll(int offset, int limit);
+	List<HoaDonDTO> findAllByUserId(int userId,int offset, int limit);
 	int save(HoaDon hoaDon);
 	boolean CheckBillUserDelivered(int massanpham,String tenkhachhang);
 	HoaDonDTO findById(int id);

@@ -84,7 +84,11 @@ public class UserDAO implements IUser{
 	public boolean save(UserEntity UserEntity) {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
-		int id = (Integer) session.save(UserEntity);
+		if (UserEntity.getId() >0)
+		{
+			session.update(UserEntity);
+		}
+			int id = (Integer) session.save(UserEntity);
 		if(id > 0)
 			return true;
 		else 

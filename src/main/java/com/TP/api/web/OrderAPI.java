@@ -1,5 +1,6 @@
 package com.TP.api.web;
 
+import com.TP.DTO.TinhTrangEnum;
 import com.TP.IService.IChiTietHoaDon;
 import com.TP.IService.IChiTietSanPham;
 import com.TP.IService.IHoaDon;
@@ -79,7 +80,7 @@ public class OrderAPI {
 				}
 				
 			}
-			hoaDon.setTinhtrang(false);
+			hoaDon.setTinhtrang(TinhTrangEnum.INP);
 			hoaDon.setThanhtoan(false);
 			int idHoaDon = hoaDonService.save(hoaDon);
 			if (idHoaDon > 0) {

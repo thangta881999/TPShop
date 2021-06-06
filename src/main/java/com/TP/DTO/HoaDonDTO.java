@@ -9,7 +9,7 @@ public class HoaDonDTO extends BaseDTO {
 	String tenkhachhang;
 	String sodt;
 	String diachigiaohang;
-	Boolean tinhtrang;
+	TinhTrangEnum tinhtrang;
 	Boolean thanhtoan;
 	public Boolean getThanhtoan() {
 		return thanhtoan;
@@ -66,15 +66,13 @@ public class HoaDonDTO extends BaseDTO {
 		this.diachigiaohang = diachigiaohang;
 	}
 
-	public Boolean getTinhtrang() {
+	public TinhTrangEnum getTinhtrang() {
 		return tinhtrang;
 	}
 
-	public void setTinhtrang(Boolean tinhtrang) {
+	public void setTinhtrang(TinhTrangEnum tinhtrang) {
 		this.tinhtrang = tinhtrang;
 	}
-
-
 
 	public String getHinhthucgiaohang() {
 		return hinhthucgiaohang;
