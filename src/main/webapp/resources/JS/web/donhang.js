@@ -15,7 +15,11 @@ function() {
 	$("#checkall").change(function () {
 		if (this.checked) {
 			$("#table-order input").each(function () {
-				$(this).attr("checked", true);
+				if(!$(this).attr("disabled"))
+				{
+					$(this).attr("checked", true);
+				}
+
 			})
 		} else {
 			$("#table-order input").each(function () {
@@ -136,19 +140,19 @@ function() {
 					var updatedDate =new Date(value[i].updatedDate).toLocaleString();
 					if (value[i].tinhtrang === "FIN")
 					{
-						var tinhtrang="	<div class=\"order_succsess\" value=\"1\">Đã nhận</div>";
+						var tinhtrang="	<div class=\"order_succsess\" value=\"FIN\">Đã nhận</div>";
 					}
 					if (value[i].tinhtrang === "DEL")
 					{
-						var tinhtrang="<div class=\"order_delivering\" value=\"0\">Đang giao hàng</div>"
+						var tinhtrang="<div class=\"order_delivering\" value=\"DEL\">Đang giao hàng</div>"
 					}
-				else
+					if (value[i].tinhtrang === "INP")
 					{
-					var tinhtrang="<div class=\"order_delivering\" value=\"0\">Đang xử lý</div>"
+					var tinhtrang="<div class=\"order_delivering\" value=\"INP\">Đang xử lý</div>"
 					}
 					
 					var updatedDate =new Date(value[i].updatedDate).toLocaleString();
-					if (value[i].thanhtoan)
+					if (value[i].thanhtoan || value[i].tinhtrang === "DEL" || value[i].tinhtrang === "FIN")
 					{
 						var thanhtoan="	<div class=\"order_succsess\" value=\"1\">Hoàn thành</div>";
 						var checkbox= 	"<label><input class=\"checkboxvalue\" type=\"checkbox\" disabled value=\" "+ value[i].mahoadon +"\"></label>\n"

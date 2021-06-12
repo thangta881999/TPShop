@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -42,9 +44,6 @@ public class APIProduct {
 
 	@Autowired 
 	ISanPham sanPhamService;
-	
-//	@Autowired(required = false)
-//	ServletContext context;
 	
 	@GetMapping(path = "products", produces = "text/plain; charset=utf-8")
 	@ResponseBody
@@ -91,7 +90,6 @@ public class APIProduct {
 		// khi build project tren server tomcat thi n se tao ra ban copy, ban copy co duong
 		// vd: ../wtpwebapps/duong dan project
 		// khi save thi luu tren server
-//		String path_save_file = context.getRealPath("/resources/images/sanpham/");
 		String path_save_file= Helper.getPathSaveImg();
 		Iterator<String> lstNames = request.getFileNames();
 		MultipartFile mpf = request.getFile(lstNames.next());

@@ -50,7 +50,7 @@
 											<c:choose>
 											<c:when test="${value.getTinhtrang() !='INP'}">
 												<label><input class="checkboxhoadon" type="checkbox" disabled
-															  value="${value.getMahoadon()}"></label>>
+															  value="${value.getMahoadon()}"></label>
 
 											</c:when>
 											<c:otherwise>

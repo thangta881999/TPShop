@@ -22,32 +22,33 @@ import java.util.List;
 @RequestMapping("/chitiet")
 @SessionAttributes("giohang")
 public class ChiTietController {
-	
+
 	@Autowired
 	ISanPham sanPhamService;
-	
+
 	@Autowired
 	IDanhMuc danhMucService;
 
 	@Autowired
 	IReviewService reviewService;
-	
+
 	@GetMapping(path = "/{masanpham}", produces = "text/plain; charset=utf-8")
 	public String Default(@PathVariable int masanpham, ModelMap modelMap, HttpSession httpSession) {
-		
+
 		SanPham sanPham = sanPhamService.LayDanhSachChiTietSanPhamTheoMa(masanpham);
-		
+
 		if(null != httpSession.getAttribute("giohang")) {
 			List<GioHang> listGioHangs = (List<GioHang>) httpSession.getAttribute("giohang");
 			modelMap.addAttribute("soluongsanphamgiohang", listGioHangs.size());
 		}
-		
+
 		modelMap.addAttribute("chiTietSanPham", sanPham);
 		List<DanhMucDTO> danhMucDTOs = danhMucService.CreateMenu();
 		modelMap.addAttribute("danhmucDTO", danhMucDTOs);
 		List<Review> reviews= reviewService.findByroductId(masanpham);
 		modelMap.addAttribute("reviews", reviews);
-		modelMap.addAttribute("averageRating",reviewService.averageRatingByProductId(masanpham));
+		modelMap.addAttribute("averageRating",
+				(double) Math.round(reviewService.averageRatingByProductId(masanpham)*100)/100);
 		return "web/chitiet";
 	}
 }

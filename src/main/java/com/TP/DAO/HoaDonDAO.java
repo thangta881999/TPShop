@@ -212,9 +212,12 @@ public class HoaDonDAO implements IHoaDon {
 	public boolean CheckBillUserDelivered(int masanpham,String tenkhachhang) {
 		// TODO Auto-generated method stub
 		String tenkh="\""+tenkhachhang+"\"";
+		String tinhtrang="FIN";
+		 tinhtrang="\""+tinhtrang+"\"";
+
 		Session session = sessionFactory.getCurrentSession();
 		String query= " SELECT hd.tenkhachhang FROM  dbminishop.chitiethoadon  cthd inner join dbminishop.hoadon hd inner join chitietsanpham ctsp " +
-				"where ctsp.machitietsanpham=cthd.machitietsanpham and ctsp.masanpham="+masanpham+" and hd.tenkhachhang="+tenkh+" and hd.mahoadon=cthd.mahoadon and hd.tinhtrang=1";
+				"where ctsp.machitietsanpham=cthd.machitietsanpham and ctsp.masanpham="+masanpham+" and hd.tenkhachhang="+tenkh+" and hd.mahoadon=cthd.mahoadon and hd.tinhtrang="+tinhtrang+"";
 		List<Object[]> rows= session.createNativeQuery(query).getResultList();
 		return rows.size() > 0;
 	}
