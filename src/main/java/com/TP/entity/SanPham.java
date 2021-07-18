@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity(name = "SANPHAM")
-//@Indexed
+@Indexed
 public class SanPham {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
