@@ -70,6 +70,14 @@ public class RecommendController {
         return "web/recommend";
     }
 
+    @GetMapping("/client")
+    public String recommendForClient(ModelMap modelMap) {
+        List<SanPhamDTO> sanPhamDTOS = new ArrayList<>();
+        sanPhamDTOS = sanPhamService.findTop100BestSeller(0, 100);
+        modelMap.addAttribute("listSanPhams", sanPhamDTOS);
+        return "web/recommend";
+    }
+
     @GetMapping("/create-prediction-rating/{userId}")
     public ResponseEntity<RecommendRating> recommend_product_for_user(@PathVariable("userId") int user_id) {
         long startTime = new Date().getTime();

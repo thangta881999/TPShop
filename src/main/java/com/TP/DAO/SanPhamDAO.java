@@ -163,6 +163,19 @@ public class SanPhamDAO implements ISanPham {
     }
 
     @Override
+    public List<SanPhamDTO> findTop100BestSeller(int offset, int limit) {
+        Session session = sessionFactory.getCurrentSession();
+        String query = "SELECT machitietsanpham FROM CHITIETHOADON\n" +
+                "group by machitietsanpham\n" +
+                "order by count(*) DESC";
+        List<Integer[]> mactsanphamList = session.createNativeQuery(query).setMaxResults(limit).getResultList();
+        Query query2 = session.createNativeQuery("SELECT distinct masanpham from CHITIETSANPHAM WHERE machitietsanpham IN :mactsanphamList");
+        query2.setParameterList("mactsanphamList", mactsanphamList);
+        List<Integer[]> masanphamList = query2.getResultList();
+        return getProductRecommend(masanphamList.stream().toArray(Integer[]::new));
+    }
+
+    @Override
     public List<SanPhamDTO> search(String keyword, int offset, int limit) {
         Session session = sessionFactory.getCurrentSession();
         FullTextSession fullTextSession = Search.getFullTextSession(session);

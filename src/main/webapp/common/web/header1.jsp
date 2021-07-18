@@ -32,6 +32,10 @@
                         <li><a href='<c:url value="/recommend?userId=${SecurityUtils.getPrincipal().getUserId()}" />'>Sản
                             phẩm dành cho bạn</a></li>
                     </security:authorize>
+                    <security:authorize access="isAnonymous()">
+                        <li><a href='<c:url value="/recommend/client" />'>Sản
+                            phẩm dành cho bạn</a></li>
+                    </security:authorize>
                     <li>
                         <div class="flexbox">
                             <div class="search">
