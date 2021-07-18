@@ -110,7 +110,7 @@ $(document).ready(
             var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
             var msg = "";
             if (ratingValue > 1) {
-                msg = "Cảm ơn. Bạn đã đánh giá" + ratingValue + " sao.";
+                msg = "Cảm ơn. Bạn đã đánh giá " + ratingValue + " sao.";
             } else {
                 msg = "We will improve ourselves. You rated this " + ratingValue + " stars.";
             }
