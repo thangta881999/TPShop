@@ -31,36 +31,42 @@
                                id="id" name="id"
                                class="form-control hidden"
                                value="${user.id}">
-                        <label for="fullName">Full Name</label> <br> <input type="text" readonly="true"
-                                                                            id="fullName" name="fullName"
-                                                                            class="form-control"
-                                                                            value="${user.fullName}"
+                        <label for="fullName">Họ và tên</label> <br> <input type="text" readonly="true"
+                                                                              id="fullName" name="fullName"
+                                                                              class="form-control"
+                                                                              value="${user.fullName}"
                     ><br>
-                        <label for="userName">User Name </label><br> <input type="text" readonly="true"
-                                                                            id="userName" name="userName"
-                                                                            class="form-control"
-                                                                            value="${user.userName}"
+                        <label for="userName">Tài khoản </label><br> <input type="text" readonly="true"
+                                                                              id="userName" name="userName"
+                                                                              class="form-control"
+                                                                              value="${user.userName}"
                     ><br>
-                        <div class="password ">
-                        <label for="password">Password </label><br> <input type="password" readonly="true"
-                                                                           id="password" name="password"
-                                                                           class="form-control"
-                                                                           value="${user.password}"
-                    ><br>
-                        </div>
+                        <label for="phone">Số điện thoại: </label><br>
+                        <input name="phone" id="phone" class="form-control" readonly="true"
+                               value="${user.phone}"> <br>
+                        <br>
                         <div>
-                        <button id="btn-changePassword" class="btn btn-action hidden ">Change Password
-                        </button>
+                            <button id="btn-changePassword" class="btn btn-action hidden ">Đổi mật khẩu
+                            </button>
+                        </div>
+                        <br>
+                        <div class="password hidden ">
+                            <label for="password">Mật khẩu hiện tại</label><br> <input type="password"
+                                                                                           id="password" name="password"
+                                                                                           class="form-control"
+                                                                                           placeholder="Nhập mật khẩu hiện tại"
+                                                                                           value="${user.password}"
+                        ><br>
                         </div>
                         <div class="password1 hidden">
-                            <label for="password1">New Password</label> <br> <input type="password1"
-                                                                                    id="password1" name="password1"
-                                                                                    class="form-control "
-                                                                                    placeholder="Nhập lại mật khẩu mới"
+                            <label for="password1">Mật khẩu mới</label> <br> <input type="password"
+                                                                                       id="password1" name="password1"
+                                                                                       class="form-control "
+                                                                                       placeholder="Nhập lại mật khẩu mới"
                         ><br>
                         </div>
                         <div class="password2 hidden">
-                            <label for="password2">Re-input New Password</label> <br> <input type="password"
+                            <label for="password2">Nhập lại mật khẩu</label> <br> <input type="password"
                                                                                              id="password2"
                                                                                              name="password2"
                                                                                              class="form-control "
@@ -68,10 +74,6 @@
                         ><br>
                         </div>
 
-                        <label for="phone">Phone: </label><br>
-                        <input name="phone" id="phone" class="form-control" readonly="true"
-                               value="${user.phone}"> <br>
-                        <br>
                     </form>
                     <div class="method">
 

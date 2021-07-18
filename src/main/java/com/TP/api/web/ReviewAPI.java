@@ -1,12 +1,12 @@
 package com.TP.api.web;
 
-import com.TP.DTO.RecommendSystem.AVGRatedProductDTO;
-import com.TP.DTO.RecommendSystem.RatingRSDTO;
-import com.TP.IService.*;
-import com.TP.Respone.ValidRespone;
-import com.TP.converter.ReviewConverter;
-import com.TP.entity.CosineSimilarity;
-import com.TP.entity.Review;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -16,11 +16,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import com.TP.DTO.RecommendSystem.AVGRatedProductDTO;
+import com.TP.DTO.RecommendSystem.RatingRSDTO;
+import com.TP.IService.ICosineSimilarityService;
+import com.TP.IService.IHoaDon;
+import com.TP.IService.IRecommendRatingService;
+import com.TP.IService.IReviewService;
+import com.TP.IService.ISanPham;
+import com.TP.IService.IUser;
+import com.TP.Respone.ValidRespone;
+import com.TP.converter.ReviewConverter;
+import com.TP.entity.CosineSimilarity;
+import com.TP.entity.Review;
 
 @RestController
 @RequestMapping("api/reviews")
@@ -109,7 +116,7 @@ public class ReviewAPI {
 //
                 double cosineSimilarity = norm_pd1_mul_norm_pd2 != 0.0 ? pd1_dot_pd2 / norm_pd1_mul_norm_pd2 : -1;
 //
-                cosineSimilarity=(double) Math.round(cosineSimilarity*100)/100;
+                cosineSimilarity = (double) Math.round(cosineSimilarity * 100) / 100;
                 CosineSimilarity a = new CosineSimilarity(product_id1, product_id2, cosineSimilarity);
                 cosSimilarities.add(a);
                 System.out.println("i: " + i + " - j: " + j);

@@ -13,7 +13,7 @@
         <div class="col-sm-2 col-md-2">
 
             <div class="menu-listy">
-                <h2>our Products</h2>
+                <h2>Danh mục sản phẩm</h2>
 
                 <ul class="categories-list">
                     <c:forEach var="parent" items="${danhmucDTO}">
@@ -143,7 +143,7 @@
     </ul>
   </div>
 
-  <div class='success-box'>
+  <div class='success-box hidden'>
     <div class='clearfix'></div>
 	  <i class="icon-next"></i>
     <div class='text-message'></div>
@@ -166,44 +166,44 @@
                 </button>
             </div>
         </form>
-        			<div class="list-rating" style="border-radius:5px; border:1px solid #dedede">
-        				<div class="rating_item" style="margin:10px 0">
-        					<ul style="list-style:none" class="list-review">
-                                <c:forEach var="review" items="${reviews}">
-        						<li  style="margin-bottom: 5px;">
-        							<div>
-                                        <c:if test="${review.user.fullName != null}">
+        <div class="list-rating" style="border-radius:5px; border:1px solid #dedede">
+            <div class="rating_item" style="margin:10px 0">
+                <ul style="list-style:none" class="list-review">
+                    <c:forEach var="review" items="${reviews}">
+                        <li style="margin-bottom: 5px;">
+                            <div>
+                                <c:if test="${review.user.fullName != null}">
                       <span
-        					  style="color:#333;font-weight:bold;text-transform:capitalize"
-        			  >${review.user.fullName}</span>
-                                        </c:if>
-                                        <c:if test="${review.user.fullName == null}">
+                              style="color:#333;font-weight:bold;text-transform:capitalize"
+                      >${review.user.fullName}</span>
+                                </c:if>
+                                <c:if test="${review.user.fullName == null}">
                       <span
                               style="color:#333;font-weight:bold;text-transform:capitalize"
                       >Ẩn danh</span>
-                                        </c:if>
-        								<a style="color:#2ba832">
-        									<i class="fa fa-check-circle"></i>
-        								</a>
-        							</div>
-        							<p style="display:flex; margin-bottom:0">
+                                </c:if>
+                                <a style="color:#2ba832">
+                                    <i class="fa fa-check-circle"></i>
+                                </a>
+                            </div>
+                            <p style="display:flex; margin-bottom:0">
                       <span class="post_rating">
-        							<ul style="list-style:none; display:flex">
-                                    <c:forEach begin="1" end="${review.rating}">
-        								<li >
-        									<i class="fa fa-star" style="color: #ff9705;"></i>
-        								</li>
-                                    </c:forEach>
-        							</ul>
-        							</span>
-        							<span class="ra_content" style="margin-left:5px">${review.comment}</span>
-        							</p>
-        							<div>${review.created}</div>
-        						</li>
-                                    </c:forEach>
-        					</ul>
-        				</div>
-        			</div>
+                            <ul style="list-style:none; display:flex">
+                                <c:forEach begin="1" end="${review.rating}">
+                                    <li>
+                                        <i class="fa fa-star" style="color: #ff9705;"></i>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                            </span>
+                            <span class="ra_content" style="margin-left:5px">${review.comment}</span>
+                            </p>
+                            <div>${review.created}</div>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 <script src='<c:url value="/resources/JS/jquery-3.4.1.min.js" />'></script>

@@ -1,95 +1,112 @@
 package com.TP.entity;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name="user")
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+@Entity(name = "user")
 public class UserEntity {
-	public static final BCryptPasswordEncoder encode= new BCryptPasswordEncoder();
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int id;
-	
-	private String userName;
+    public static final BCryptPasswordEncoder encode = new BCryptPasswordEncoder();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int id;
 
-	private String password;
+    private String userName;
 
-	private String fullName;
-	private String phone;
-	private String diachi;
+    private String password;
 
-	public String getPhone() {
-		return phone;
-	}
+    private String fullName;
+    private String phone;
+    private String diachi;
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public String getPhone() {
+        return phone;
+    }
 
-	public String getDiachi() {
-		return diachi;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	public void setDiachi(String diachi) {
-		this.diachi = diachi;
-	}
+    public String getDiachi() {
+        return diachi;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public void setDiachi(String diachi) {
+        this.diachi = diachi;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	private Integer status;
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	
-	  @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	  
-	  @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "userid"),
-	  inverseJoinColumns = @JoinColumn(name = "roleid"))
-	  private List<RoleEntity> roles = new ArrayList<>();
-	 
+    private Integer status;
 
-	public String getUserName() {
-		return userName;
-	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 
-	public String getPassword() {
-		return password;
-	}
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "userid"),
+            inverseJoinColumns = @JoinColumn(name = "roleid"))
+    private List<RoleEntity> roles = new ArrayList<>();
 
-	public void setPassword(String password) {
-		this.password =encode.encode(password);
-	}
 
-	public String getFullName() {
-		return fullName;
-	}
+    public String getUserName() {
+        return userName;
+    }
 
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-	public Integer getStatus() {
-		return status;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
+    public void setPassword(String password) {
+        if (password.length() > 40) {
+            this.password = password;
+        } else {
+            this.password = encode.encode(password);
+        }
+    }
 
-	
-	  public List<RoleEntity> getRoles() { return roles; }
-	  
-	  public void setRoles(List<RoleEntity> roles) { this.roles = roles; }
-	 
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+
+    public List<RoleEntity> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RoleEntity> roles) {
+        this.roles = roles;
+    }
+
 }

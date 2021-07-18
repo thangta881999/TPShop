@@ -1,5 +1,24 @@
 package com.TP.controller.web;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.TP.DTO.RecommendSystem.AVGRatedProductDTO;
 import com.TP.DTO.RecommendSystem.RatingRSDTO;
 import com.TP.DTO.SanPhamDTO;
@@ -10,18 +29,7 @@ import com.TP.IService.ISanPham;
 import com.TP.converter.ReviewConverter;
 import com.TP.entity.CosineSimilarity;
 import com.TP.entity.RecommendRating;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import com.TP.helper.Helper;
 
 @Controller
 @RequestMapping("/recommend")
@@ -40,28 +48,21 @@ public class RecommendController {
     @GetMapping
     public String Default(@RequestParam int userId, ModelMap modelMap) {
         RecommendRating recommendRating = new RecommendRating();
-        List<SanPhamDTO> sanPhamDTOS= new ArrayList<>();
-        if(recommendRatingService.checkExistUser(userId))
-        {
-             recommendRating=recommendRatingService.getById(userId);
-        }
-        else
-        {
-            if(!Objects.requireNonNull(recommend_product_for_user(userId).getBody()).getProducts().equals(""))
-            {
-                recommendRating=recommendRatingService.getById(userId);
-            }
-            else
-            {
+        List<SanPhamDTO> sanPhamDTOS = new ArrayList<>();
+        if (recommendRatingService.checkExistUser(userId)) {
+            recommendRating = recommendRatingService.getById(userId);
+        } else {
+            if (!Objects.requireNonNull(recommend_product_for_user(userId).getBody()).getProducts().equals("")) {
+                recommendRating = recommendRatingService.getById(userId);
+            } else {
                 recommendRating.setProducts("");
             }
 
 
         }
-        if(!recommendRating.getProducts().equals(""))
-        {
-            Integer [] ids= Stream.of(recommendRating.getProducts().split("-")).map(Integer::valueOf).toArray(Integer[]::new);
-            sanPhamDTOS=sanPhamService.getProductRecommend(ids);
+        if (!recommendRating.getProducts().equals("")) {
+            Integer[] ids = Stream.of(recommendRating.getProducts().split("-")).map(Integer::valueOf).toArray(Integer[]::new);
+            sanPhamDTOS = sanPhamService.getProductRecommend(ids);
         }
 
         modelMap.addAttribute("listSanPhams", sanPhamDTOS);
@@ -129,20 +130,17 @@ public class RecommendController {
             }
         });
 
-        mapPredictionProduct.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).limit(10).forEach(value -> {
+        mapPredictionProduct.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).limit(Helper.LIMIT_PRODUCT).forEach(value -> {
             listProductRS.append(value.getKey()).append("-");
             listProductRS_Show.append(value.getKey()).append(" - ").append(value.getValue()).append(";");
         });
-        if (listProductRS.length()<1)
-        {
+        if (listProductRS.length() < 1) {
             return ResponseEntity.ok().body(new RecommendRating(user_id, listProductRS_Show.toString()));
         }
-        if (!recommendRatingService.checkExistUser(user_id))
-        {
+        if (!recommendRatingService.checkExistUser(user_id)) {
             recommendRatingService.save(new RecommendRating(user_id, listProductRS.deleteCharAt(listProductRS.length() - 1).toString()));
 
-        }
-        else {
+        } else {
             RecommendRating recommendRating = recommendRatingService.getById(user_id);
             recommendRating.setProducts(listProductRS.deleteCharAt(listProductRS.length() - 1).toString());
             recommendRatingService.save(recommendRating);

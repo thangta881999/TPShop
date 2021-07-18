@@ -1,15 +1,16 @@
 package com.TP.service;
 
+import java.math.BigInteger;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.TP.DAO.HoaDonDAO;
 import com.TP.DTO.HoaDonDTO;
 import com.TP.IService.IHoaDon;
 import com.TP.entity.HoaDon;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.math.BigInteger;
-import java.util.List;
-import java.util.Map;
 
 @Service
 public class HoaDonService implements IHoaDon {
@@ -26,7 +27,7 @@ public class HoaDonService implements IHoaDon {
 
     @Override
     public List<HoaDonDTO> findAllByUserId(int userId, int offset, int limit) {
-        return hoaDonDAO.findAllByUserId(userId,offset,limit);
+        return hoaDonDAO.findAllByUserId(userId, offset, limit);
     }
 
     @Override
@@ -54,7 +55,7 @@ public class HoaDonService implements IHoaDon {
     }
 
     @Override
-    public long getBillsuccess() {
+    public BigInteger getBillsuccess() {
         // TODO Auto-generated method stub
         return hoaDonDAO.getBillsuccess();
     }
@@ -66,7 +67,7 @@ public class HoaDonService implements IHoaDon {
     }
 
     @Override
-    public long getBillprocessing() {
+    public BigInteger getBillprocessing() {
         // TODO Auto-generated method stub
         return hoaDonDAO.getBillprocessing();
     }
