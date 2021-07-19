@@ -49,16 +49,16 @@ public class SanPhamAPI {
     @Autowired
     private IRecommendRatingService recommendRatingService;
 
-//    @GetMapping(value = "/indexData")
-//    @ResponseBody
-//    public String indexData() {
-//        try {
-//            sanPhamService.indexBooks();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return "Indexed at " + new Date().toGMTString();
-//    }
+    @GetMapping(value = "/indexData")
+    @ResponseBody
+    public String indexData() {
+        try {
+            sanPhamService.indexBooks();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "Indexed at " + new Date().toGMTString();
+    }
 
     @GetMapping("/recommend/top-rating/{userId}")
     @ResponseBody
