@@ -1,9 +1,9 @@
 -- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
 --
--- Host: localhost    Database: heroku_8b050971d97876a
+-- Host: localhost    Database: tpminishop
 -- ------------------------------------------------------
 -- Server version	8.0.13
-USE heroku_8b050971d97876a;
+USE tpminishop;
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;

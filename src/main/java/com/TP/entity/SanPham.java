@@ -25,7 +25,7 @@ import org.hibernate.search.annotations.Store;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity(name = "SANPHAM")
-@Indexed
+//@Indexed
 public class SanPham {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
