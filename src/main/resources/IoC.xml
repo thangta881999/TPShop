@@ -25,16 +25,16 @@
 <!--    		<property name="driverClassName"-->
 <!--    			value="com.mysql.jdbc.Driver" />-->
 <!--    		<property name="url"-->
-<!--    			value="jdbc:mysql://localhost:3306/heroku_14b8fba2649c371?useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" />-->
+<!--    			value="jdbc:mysql://localhost:3306/heroku_6640a1c02ae9e7a?useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" />-->
 <!--    		<property name="username" value="root" />-->
 <!--    		<property name="password" value="159753456ThanG" />-->
 <!--    	</bean>-->
 
     <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://us-cdbr-east-04.cleardb.com:3306/heroku_14b8fba2649c371?reconnect=true" />
-        <property name="username" value="b38d2bfb827623" />
-        <property name="password" value="a66deecd" />
+        <property name="url" value="jdbc:mysql://us-cdbr-east-04.cleardb.com:3306/heroku_6640a1c02ae9e7a?reconnect=true" />
+        <property name="username" value="b115fab24775ad" />
+        <property name="password" value="8c1546a2" />
     </bean>
     <!--	.-->
     <!--	<bean class="java.net.URI" id="dbUrl">-->
