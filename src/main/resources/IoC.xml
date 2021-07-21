@@ -20,22 +20,22 @@
     <context:component-scan base-package="com.TP.chatbot"></context:component-scan>
     <context:component-scan base-package="com.TP.helper"></context:component-scan>
 
-    	<bean id="dataSource"
-    		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-    		<property name="driverClassName"
-    			value="com.mysql.jdbc.Driver" />
-    		<property name="url"
-    			value="jdbc:mysql://localhost:3306/tpminishop?useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" />
-    		<property name="username" value="root" />
-    		<property name="password" value="159753456ThanG" />
-    	</bean>
+<!--    	<bean id="dataSource"-->
+<!--    		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">-->
+<!--    		<property name="driverClassName"-->
+<!--    			value="com.mysql.jdbc.Driver" />-->
+<!--    		<property name="url"-->
+<!--    			value="jdbc:mysql://localhost:3306/heroku_257ada88636c968?useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" />-->
+<!--    		<property name="username" value="root" />-->
+<!--    		<property name="password" value="159753456ThanG" />-->
+<!--    	</bean>-->
 
-<!--    <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
-<!--        <property name="driverClassName" value="com.mysql.jdbc.Driver" />-->
-<!--        <property name="url" value="jdbc:mysql://us-cdbr-east-04.cleardb.com:3306/tpminishop?reconnect=true" />-->
-<!--        <property name="username" value="bf1ea7a07580a2" />-->
-<!--        <property name="password" value="19f6a212" />-->
-<!--    </bean>-->
+    <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://us-cdbr-east-04.cleardb.com:3306/heroku_257ada88636c968?reconnect=true" />
+        <property name="username" value="b45faa6fc50e30" />
+        <property name="password" value="67585a6f" />
+    </bean>
     <!--	.-->
     <!--	<bean class="java.net.URI" id="dbUrl">-->
     <!--		<constructor-arg value="#{systemEnvironment['CLEARDB_DATABASE_URL']}"/>-->
