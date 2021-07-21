@@ -208,8 +208,8 @@ public class HoaDonDAO implements IHoaDon {
         tinhtrang = "\"" + tinhtrang + "\"";
         Map<String, BigInteger> result = new HashMap<String, BigInteger>();
         String query = "SELECT t.tendanhmuc,count(t.soluong) as soluong FROM\n" +
-                " (SELECT sp.madanhmuc,dm.tendanhmuc , cthd.soluong FROM  ( ( (heroku_6640a1c02ae9e7a.chitiethoadon  cthd inner join heroku_6640a1c02ae9e7a.hoadon hd)   inner join heroku_6640a1c02ae9e7a.chitietsanpham ctsp  )\n" +
-                "															inner join heroku_6640a1c02ae9e7a.sanpham sp  )  inner join heroku_6640a1c02ae9e7a.danhmucsanpham dm\n" +
+                " (SELECT sp.madanhmuc,dm.tendanhmuc , cthd.soluong FROM  ( ( (heroku_7d4eb5f362fe55b.chitiethoadon  cthd inner join heroku_7d4eb5f362fe55b.hoadon hd)   inner join heroku_7d4eb5f362fe55b.chitietsanpham ctsp  )\n" +
+                "															inner join heroku_7d4eb5f362fe55b.sanpham sp  )  inner join heroku_7d4eb5f362fe55b.danhmucsanpham dm\n" +
                 "where cthd.machitietsanpham=ctsp.machitietsanpham and ctsp.masanpham = sp.masanpham and sp.madanhmuc = dm.madanhmuc and hd.mahoadon=cthd.mahoadon and hd.tinhtrang=" + tinhtrang + ") as t \n" +
                 " group by t.madanhmuc ";
         List<Object[]> rows = session.createNativeQuery(query).getResultList();
@@ -226,7 +226,7 @@ public class HoaDonDAO implements IHoaDon {
         tinhtrang = "\"" + tinhtrang + "\"";
 
         Session session = sessionFactory.getCurrentSession();
-        String query = " SELECT hd.tenkhachhang FROM  heroku_6640a1c02ae9e7a.chitiethoadon  cthd inner join heroku_6640a1c02ae9e7a.hoadon hd inner join chitietsanpham ctsp " +
+        String query = " SELECT hd.tenkhachhang FROM  heroku_7d4eb5f362fe55b.chitiethoadon  cthd inner join heroku_7d4eb5f362fe55b.hoadon hd inner join chitietsanpham ctsp " +
                 "where ctsp.machitietsanpham=cthd.machitietsanpham and ctsp.masanpham=" + masanpham + " and hd.tenkhachhang=" + tenkh + " and hd.mahoadon=cthd.mahoadon and hd.tinhtrang=" + tinhtrang + "";
         List<Object[]> rows = session.createNativeQuery(query).getResultList();
         return rows.size() > 0;
